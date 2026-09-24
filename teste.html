@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Achados & Perdidos - IFSP Campus Capivari</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* TELA INICIAL */
+
+    .welcome-screen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #1d4ed8, #2563eb, #60a5fa);
+    }
+
+    .welcome-card {
+      width: 100%;
+      max-width: 470px;
+      background: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      width: 85px;
+      height: 85px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 20px;
+    }
+
+    .welcome-card h1 {
+      color: #1d4ed8;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .welcome-card h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #334155;
+    }
+
+    .welcome-card p {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .welcome-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .primary-button {
+      background: #2563eb;
+      color: white;
+    }
+
+    .primary-button:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary-button {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+
+    .secondary-button:hover {
+      background: #cbd5e1;
+    }
+
+    /* AUTENTICAÇÃO */
+
+    .auth-screen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: #eff6ff;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-card h2 {
+      color: #1d4ed8;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .auth-card .subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      outline: none;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #2563eb;
+    }
+
+    .auth-card .primary-button {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .back-button {
+      border: none;
+      background: transparent;
+      color: #2563eb;
+      margin-top: 18px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .back-button:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .message.error {
+      color: #dc2626;
+    }
+
+    .message.success {
+      color: #16a34a;
+    }
+
+    /* HOME */
+
+    .home-screen {
+      min-height: 100vh;
+      background: #f8fafc;
+    }
+
+    .navbar {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 15px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar-brand {
+      color: #1d4ed8;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .navbar-brand span {
+      display: block;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: normal;
+      margin-top: 3px;
+    }
+
+    .logout-button {
+      border: none;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .logout-button:hover {
+      background: #fecaca;
+    }
+
+    .home-content {
+      width: 88%;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 35px 0;
+    }
+
+    .home-header {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 25px;
+    }
+
+    .home-header h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .home-header p {
+      line-height: 1.6;
+      color: #dbeafe;
+    }
+
+    .search-area {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+    }
+
+    .search-area h3 {
+      margin-bottom: 15px;
+      color: #334155;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .search-row input {
+      flex: 1;
+      padding: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      outline: none;
+    }
+
+    .search-row input:focus {
+      border-color: #2563eb;
+    }
+
+    .search-button {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 0 22px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .search-button:hover {
+      background: #1d4ed8;
+    }
+
+    .actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-button {
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #475569;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .filter-button.active,
+    .filter-button:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: white;
+    }
+
+    .add-button {
+      border: none;
+      background: #16a34a;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .add-button:hover {
+      background: #15803d;
+    }
+
+    .objects-title {
+      margin-bottom: 18px;
+      color: #334155;
+    }
+
+    .objects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 22px;
+    }
+
+    .object-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      transition: 0.2s;
+    }
+
+    .object-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .object-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .object-info {
+      padding: 17px;
+    }
+
+    .object-info h3 {
+      margin-bottom: 10px;
+      color: #1e293b;
+      font-size: 19px;
+    }
+
+    .object-info p {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .object-info strong {
+      color: #334155;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .status.perdido {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .status.achado {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .contact-button {
+      width: 100%;
+      border: none;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    .contact-button:hover {
+      background: #bfdbfe;
+    }
+
+    .empty-message {
+      background: white;
+      padding: 30px;
+      text-align: center;
+      border-radius: 12px;
+      color: #64748b;
+      grid-column: 1 / -1;
+    }
+
+    /* MODAL */
+
+    .modal-background {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .modal-header h2 {
+      color: #1d4ed8;
+    }
+
+    .close-button {
+      border: none;
+      background: #f1f5f9;
+      color: #475569;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+
+    .close-button:hover {
+      background: #e2e8f0;
+    }
+
+    .modal .primary-button {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .image-preview {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 650px) {
+      .welcome-card {
+        padding: 30px 22px;
+      }
+
+      .navbar {
+        padding: 14px 5%;
+      }
+
+      .navbar-brand {
+        font-size: 17px;
+      }
+
+      .logout-button {
+        padding: 9px 11px;
+        font-size: 12px;
+      }
+
+      .home-content {
+        width: 92%;
+        padding: 22px 0;
+      }
+
+      .home-header {
+        padding: 23px;
+      }
+
+      .home-header h1 {
+        font-size: 24px;
+      }
+
+      .search-row {
+        flex-direction: column;
+      }
+
+      .search-button {
+        padding: 12px;
+      }
+
+      .actions-row {
+        align-items: stretch;
+      }
+
+      .filters {
+        width: 100%;
+      }
+
+      .add-button {
+        width: 100%;
+      }
+
+      .modal {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TELA DE BOAS-VINDAS -->
+
+  <section id="welcomeScreen" class="welcome-screen">
+    <div class="welcome-card">
+      <div class="logo">🔎</div>
+
+      <h1>Achados & Perdidos</h1>
+
+      <h2>IFSP Campus Capivari</h2>
+
+      <p>
+        Encontre objetos perdidos ou ajude alguém a recuperar
+        seus pertences dentro da escola.
+      </p>
+
+      <div class="welcome-buttons">
+        <button class="primary-button" onclick="showLogin()">
+          Entrar
+        </button>
+
+        <button class="secondary-button" onclick="showRegister()">
+          Criar uma conta
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TELA DE LOGIN -->
+
+  <section id="loginScreen" class="auth-screen hidden">
+    <div class="auth-card">
+      <h2>Entrar na conta</h2>
+
+      <p class="subtitle">
+        Acesse o sistema de Achados & Perdidos
+      </p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">E-mail</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="Digite seu e-mail"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Senha</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Digite sua senha"
+            required
+          />
+        </div>
+
+        <button type="submit" class="primary-button">
+          Entrar
+        </button>
+      </form>
+
+      <p id="loginMessage" class="message"></p>
+
+      <button class="back-button" onclick="showWelcome()">
+        Voltar
+      </button>
+    </div>
+  </section>
+
+
+  <!-- TELA DE CADASTRO -->
+
+  <section id="registerScreen" class="auth-screen hidden">
+    <div class="auth-card">
+      <h2>Criar uma conta</h2>
+
+      <p class="subtitle">
+        Cadastre-se para utilizar o sistema
+      </p>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="registerName">Nome completo</label>
+          <input
+            type="text"
+            id="registerName"
+            placeholder="Digite seu nome"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="registerEmail">E-mail</label>
+          <input
+            type="email"
+            id="registerEmail"
+            placeholder="Digite seu e-mail"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="registerPhone">Telefone</label>
+          <input
+            type="tel"
+            id="registerPhone"
+            placeholder="Digite seu telefone"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="registerPassword">Senha</label>
+          <input
+            type="password"
+            id="registerPassword"
+            placeholder="Crie uma senha"
+            required
+          />
+        </div>
+
+        <button type="submit" class="primary-button">
+          Cadastrar
+        </button>
+      </form>
+
+      <p id="registerMessage" class="message"></p>
+
+      <button class="back-button" onclick="showWelcome()">
+        Voltar
+      </button>
+    </div>
+  </section>
+
+
+  <!-- TELA PRINCIPAL -->
+
+  <section id="homeScreen" class="home-screen hidden">
+
+    <nav class="navbar">
+      <div class="navbar-brand">
+        Achados & Perdidos
+        <span>IFSP Campus Capivari</span>
+      </div>
+
+      <button class="logout-button" onclick="logout()">
+        Sair
+      </button>
+    </nav>
+
+    <main class="home-content">
+
+      <div class="home-header">
+        <h1>Olá, seja bem-vindo! 👋</h1>
+
+        <p>
+          Encontre objetos perdidos ou cadastre um objeto que você
+          encontrou dentro do IFSP Campus Capivari.
+        </p>
+      </div>
+
+      <div class="search-area">
+        <h3>Pesquisar objetos</h3>
+
+        <div class="search-row">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Pesquise por celular, mochila, carteira..."
+          />
+
+          <button class="search-button" onclick="searchObjects()">
+            Pesquisar
+          </button>
+        </div>
+      </div>
+
+      <div class="actions-row">
+
+        <div class="filters">
+          <button
+            class="filter-button active"
+            onclick="filterObjects('todos', this)"
+          >
+            Todos
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filterObjects('perdido', this)"
+          >
+            Perdidos
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filterObjects('achado', this)"
+          >
+            Achados
+          </button>
+        </div>
+
+        <button class="add-button" onclick="openModal()">
+          + Adicionar objeto
+        </button>
+
+      </div>
+
+      <h2 class="objects-title">Objetos cadastrados</h2>
+
+      <div id="objectsGrid" class="objects-grid"></div>
+
+    </main>
+  </section>
+
+
+  <!-- MODAL PARA ADICIONAR OBJETO -->
+
+  <div id="modalBackground" class="modal-background hidden">
+    <div class="modal">
+
+      <div class="modal-header">
+        <h2>Adicionar objeto</h2>
+
+        <button class="close-button" onclick="closeModal()">
+          ×
+        </button>
+      </div>
+
+      <form id="objectForm">
+
+        <div class="form-group">
+          <label for="objectName">Nome do objeto</label>
+          <input
+            type="text"
+            id="objectName"
+            placeholder="Ex: Celular, mochila, carteira..."
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="objectDescription">Descrição</label>
+          <input
+            type="text"
+            id="objectDescription"
+            placeholder="Descreva o objeto"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="objectLocation">Local</label>
+          <select id="objectLocation" required>
+            <option value="">Selecione o local</option>
+
+            <option value="Refeitório — IFSP Campus Capivari">
+              Refeitório
+            </option>
+
+            <option value="Banheiro feminino — IFSP Campus Capivari">
+              Banheiro feminino
+            </option>
+
+            <option value="Banheiro masculino — IFSP Campus Capivari">
+              Banheiro masculino
+            </option>
+
+            <option value="Sala de aula — IFSP Campus Capivari">
+              Sala de aula
+            </option>
+
+            <option value="Biblioteca — IFSP Campus Capivari">
+              Biblioteca
+            </option>
+
+            <option value="Pátio — IFSP Campus Capivari">
+              Pátio
+            </option>
+
+            <option value="Laboratório — IFSP Campus Capivari">
+              Laboratório
+            </option>
+
+            <option value="Quadra — IFSP Campus Capivari">
+              Quadra
+            </option>
+
+            <option value="Corredor — IFSP Campus Capivari">
+              Corredor
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="objectStatus">Situação</label>
+          <select id="objectStatus" required>
+            <option value="">Selecione a situação</option>
+            <option value="perdido">Perdido</option>
+            <option value="achado">Achado</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="objectContact">Contato</label>
+          <input
+            type="text"
+            id="objectContact"
+            placeholder="E-mail ou telefone para contato"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="objectImage">Imagem do objeto</label>
+          <input
+            type="file"
+            id="objectImage"
+            accept="image/*"
+          />
+
+          <img
+            id="imagePreview"
+            class="image-preview"
+            alt="Prévia da imagem"
+          />
+        </div>
+
+        <button type="submit" class="primary-button">
+          Cadastrar objeto
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+
+  <script>
+    // LISTA DE USUÁRIOS CADASTRADOS
+    let usuarios = [];
+
+    // USUÁRIO LOGADO
+    let usuarioLogado = null;
+
+    // FILTRO ATUAL
+    let filtroAtual = "todos";
+
+    // OBJETOS DE EXEMPLO
+    let objetos = [
+      {
+        id: 1,
+        nome: "Celular preto",
+        descricao: "Celular preto com capinha transparente.",
+        local: "Refeitório — IFSP Campus Capivari",
+        status: "perdido",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
+      },
+      {
+        id: 2,
+        nome: "Mochila azul",
+        descricao: "Mochila azul com detalhes pretos e vários bolsos.",
+        local: "Sala de aula — IFSP Campus Capivari",
+        status: "achado",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800"
+      },
+      {
+        id: 3,
+        nome: "Carteira marrom",
+        descricao: "Carteira marrom contendo alguns cartões.",
+        local: "Biblioteca — IFSP Campus Capivari",
+        status: "perdido",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800"
+      },
+      {
+        id: 4,
+        nome: "Garrafa de água",
+        descricao: "Garrafa preta com adesivos coloridos.",
+        local: "Pátio — IFSP Campus Capivari",
+        status: "achado",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800"
+      },
+      {
+        id: 5,
+        nome: "Óculos de grau",
+        descricao: "Óculos de grau com armação preta.",
+        local: "Banheiro feminino — IFSP Campus Capivari",
+        status: "perdido",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800"
+      },
+      {
+        id: 6,
+        nome: "Fone de ouvido",
+        descricao: "Fone de ouvido sem fio dentro de uma caixinha branca.",
+        local: "Corredor — IFSP Campus Capivari",
+        status: "achado",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=800"
+      },
+      {
+        id: 7,
+        nome: "Estojo escolar",
+        descricao: "Estojo preto com canetas e lápis.",
+        local: "Laboratório — IFSP Campus Capivari",
+        status: "perdido",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=800"
+      },
+      {
+        id: 8,
+        nome: "Chaves",
+        descricao: "Chaveiro com três chaves e um chaveiro azul.",
+        local: "Quadra — IFSP Campus Capivari",
+        status: "achado",
+        contato: "secretaria@ifsp.edu.br",
+        imagem: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"
+      }
+    ];
+
+    // ELEMENTOS DAS TELAS
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const loginScreen = document.getElementById("loginScreen");
+    const registerScreen = document.getElementById("registerScreen");
+    const homeScreen = document.getElementById("homeScreen");
+
+    // MOSTRAR TELA INICIAL
+    function showWelcome() {
+      welcomeScreen.classList.remove("hidden");
+      loginScreen.classList.add("hidden");
+      registerScreen.classList.add("hidden");
+      homeScreen.classList.add("hidden");
+    }
+
+    // MOSTRAR LOGIN
+    function showLogin() {
+      welcomeScreen.classList.add("hidden");
+      loginScreen.classList.remove("hidden");
+      registerScreen.classList.add("hidden");
+      homeScreen.classList.add("hidden");
+    }
+
+    // MOSTRAR CADASTRO
+    function showRegister() {
+      welcomeScreen.classList.add("hidden");
+      loginScreen.classList.add("hidden");
+      registerScreen.classList.remove("hidden");
+      homeScreen.classList.add("hidden");
+    }
+
+    // MOSTRAR HOME
+    function showHome() {
+      welcomeScreen.classList.add("hidden");
+      loginScreen.classList.add("hidden");
+      registerScreen.classList.add("hidden");
+      homeScreen.classList.remove("hidden");
+
+      renderObjects();
+    }
+
+    // CADASTRO DE USUÁRIO
+    document
+      .getElementById("registerForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const nome = document
+          .getElementById("registerName")
+          .value
+          .trim();
+
+        const email = document
+          .getElementById("registerEmail")
+          .value
+          .trim();
+
+        const telefone = document
+          .getElementById("registerPhone")
+          .value
+          .trim();
+
+        const senha = document
+          .getElementById("registerPassword")
+          .value;
+
+        const registerMessage = document.getElementById("registerMessage");
+
+        const usuarioExiste = usuarios.some(function(usuario) {
+          return usuario.email === email;
+        });
+
+        if (usuarioExiste) {
+          registerMessage.textContent =
+            "Este e-mail já está cadastrado.";
+
+          registerMessage.className = "message error";
+          return;
+        }
+
+        const novoUsuario = {
+          nome: nome,
+          email: email,
+          telefone: telefone,
+          senha: senha
+        };
+
+        usuarios.push(novoUsuario);
+        usuarioLogado = novoUsuario;
+
+        registerMessage.textContent =
+          "Cadastro realizado com sucesso!";
+
+        registerMessage.className = "message success";
+
+        setTimeout(function() {
+          document.getElementById("registerForm").reset();
+          showHome();
+        }, 700);
+      });
+
+    // LOGIN
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const email = document
+          .getElementById("loginEmail")
+          .value
+          .trim();
+
+        const senha = document
+          .getElementById("loginPassword")
+          .value;
+
+        const loginMessage = document.getElementById("loginMessage");
+
+        const usuarioEncontrado = usuarios.find(function(usuario) {
+          return usuario.email === email && usuario.senha === senha;
+        });
+
+        if (!usuarioEncontrado) {
+          loginMessage.textContent =
+            "E-mail ou senha incorretos.";
+
+          loginMessage.className = "message error";
+          return;
+        }
+
+        usuarioLogado = usuarioEncontrado;
+
+        loginMessage.textContent =
+          "Login realizado com sucesso!";
+
+        loginMessage.className = "message success";
+
+        setTimeout(function() {
+          document.getElementById("loginForm").reset();
+          showHome();
+        }, 700);
+      });
+
+    // SAIR
+    function logout() {
+      usuarioLogado = null;
+      filtroAtual = "todos";
+
+      document.getElementById("searchInput").value = "";
+
+      showWelcome();
+    }
+
+    // EXIBIR OBJETOS
+    function renderObjects(lista = objetos) {
+      const objectsGrid = document.getElementById("objectsGrid");
+
+      objectsGrid.innerHTML = "";
+
+      if (lista.length === 0) {
+        objectsGrid.innerHTML = `
+          <div class="empty-message">
+            Nenhum objeto encontrado.
+          </div>
+        `;
+
+        return;
+      }
+
+      lista.forEach(function(objeto) {
+        const statusTexto = objeto.status === "perdido"
+          ? "Perdido"
+          : "Achado";
+
+        const card = document.createElement("div");
+
+        card.className = "object-card";
+
+        card.innerHTML = `
+          <img
+            src="${objeto.imagem}"
+            alt="${objeto.nome}"
+            onerror="this.src='https://via.placeholder.com/800x500?text=Imagem+do+objeto'"
+          />
+
+          <div class="object-info">
+            <h3>${objeto.nome}</h3>
+
+            <p>
+              <strong>Descrição:</strong>
+              ${objeto.descricao}
+            </p>
+
+            <p>
+              <strong>Local:</strong>
+              ${objeto.local}
+            </p>
+
+            <span class="status ${objeto.status}">
+              ${statusTexto}
+            </span>
+
+            <button
+              class="contact-button"
+              onclick="showContact('${objeto.contato}')"
+            >
+              Ver contato
+            </button>
+          </div>
+        `;
+
+        objectsGrid.appendChild(card);
+      });
+    }
+
+    // MOSTRAR CONTATO
+    function showContact(contato) {
+      alert("Entre em contato por: " + contato);
+    }
+
+    // FILTRAR OBJETOS
+    function filterObjects(filtro, botao) {
+      filtroAtual = filtro;
+
+      const botoes = document.querySelectorAll(".filter-button");
+
+      botoes.forEach(function(item) {
+        item.classList.remove("active");
+      });
+
+      botao.classList.add("active");
+
+      aplicarFiltros();
+    }
+
+    // PESQUISAR OBJETOS
+    function searchObjects() {
+      aplicarFiltros();
+    }
+
+    // APLICAR FILTRO E PESQUISA
+    function aplicarFiltros() {
+      const pesquisa = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+      let listaFiltrada = objetos;
+
+      if (filtroAtual !== "todos") {
+        listaFiltrada = listaFiltrada.filter(function(objeto) {
+          return objeto.status === filtroAtual;
+        });
+      }
+
+      if (pesquisa !== "") {
+        listaFiltrada = listaFiltrada.filter(function(objeto) {
+          return (
+            objeto.nome.toLowerCase().includes(pesquisa) ||
+            objeto.descricao.toLowerCase().includes(pesquisa) ||
+            objeto.local.toLowerCase().includes(pesquisa)
+          );
+        });
+      }
+
+      renderObjects(listaFiltrada);
+    }
+
+    // PESQUISA AUTOMÁTICA AO DIGITAR
+    document
+      .getElementById("searchInput")
+      .addEventListener("input", searchObjects);
+
+    // ABRIR MODAL
+    function openModal() {
+      document
+        .getElementById("modalBackground")
+        .classList.remove("hidden");
+    }
+
+    // FECHAR MODAL
+    function closeModal() {
+      document
+        .getElementById("modalBackground")
+        .classList.add("hidden");
+
+      document.getElementById("objectForm").reset();
+
+      const imagePreview = document.getElementById("imagePreview");
+
+      imagePreview.style.display = "none";
+      imagePreview.src = "";
+    }
+
+    // PRÉVIA DA IMAGEM
+    document
+      .getElementById("objectImage")
+      .addEventListener("change", function(event) {
+        const arquivo = event.target.files[0];
+        const imagePreview = document.getElementById("imagePreview");
+
+        if (arquivo) {
+          const leitor = new FileReader();
+
+          leitor.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+          };
+
+          leitor.readAsDataURL(arquivo);
+        } else {
+          imagePreview.style.display = "none";
+        }
+      });
+
+    // CADASTRAR NOVO OBJETO
+    document
+      .getElementById("objectForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const nome = document
+          .getElementById("objectName")
+          .value
+          .trim();
+
+        const descricao = document
+          .getElementById("objectDescription")
+          .value
+          .trim();
+
+        const local = document
+          .getElementById("objectLocation")
+          .value;
+
+        const status = document
+          .getElementById("objectStatus")
+          .value;
+
+        const contato = document
+          .getElementById("objectContact")
+          .value
+          .trim();
+
+        const arquivoImagem = document
+          .getElementById("objectImage")
+          .files[0];
+
+        function salvarObjeto(imagem) {
+          const novoObjeto = {
+            id: Date.now(),
+            nome: nome,
+            descricao: descricao,
+            local: local,
+            status: status,
+            contato: contato,
+            imagem: imagem
+          };
+
+          objetos.unshift(novoObjeto);
+
+          closeModal();
+
+          filtroAtual = "todos";
+
+          document
+            .querySelectorAll(".filter-button")
+            .forEach(function(botao) {
+              botao.classList.remove("active");
+            });
+
+          document
+            .querySelector(".filter-button")
+            .classList.add("active");
+
+          renderObjects();
+
+          alert("Objeto cadastrado com sucesso!");
+        }
+
+        if (arquivoImagem) {
+          const leitor = new FileReader();
+
+          leitor.onload = function(e) {
+            salvarObjeto(e.target.result);
+          };
+
+          leitor.readAsDataURL(arquivoImagem);
+        } else {
+          salvarObjeto(
+            "https://via.placeholder.com/800x500?text=Objeto+sem+imagem"
+          );
+        }
+      });
+  </script>
+
+</body>
+</html>
