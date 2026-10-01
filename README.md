@@ -151,7 +151,7 @@ Não é necessário instalar nenhuma biblioteca para executar o projeto.
 
 O projeto pode ser composto apenas pelo arquivo:
 
-index.html
+teste.html
 
 
 Dentro dele estão:
