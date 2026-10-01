@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Meus Objetos - Achados & Perdidos</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 15px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar-brand {
+      color: #1d4ed8;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .navbar-brand span {
+      display: block;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: normal;
+      margin-top: 3px;
+    }
+
+    .back-button {
+      border: none;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .back-button:hover {
+      background: #bfdbfe;
+    }
+
+    /* CONTAINER */
+
+    .container {
+      width: 88%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 35px 0;
+    }
+
+    /* HEADER */
+
+    .header {
+      background: linear-gradient(
+        135deg,
+        #1d4ed8,
+        #2563eb,
+        #3b82f6
+      );
+
+      color: white;
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+    }
+
+    .header h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #dbeafe;
+      line-height: 1.6;
+    }
+
+    /* ESTATÍSTICAS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      border-left: 5px solid #2563eb;
+    }
+
+    .stat-card h3 {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card strong {
+      font-size: 28px;
+      color: #1d4ed8;
+    }
+
+    /* TÍTULO */
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      color: #334155;
+    }
+
+    /* GRID */
+
+    .objects-grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+      );
+
+      gap: 22px;
+    }
+
+    /* CARD */
+
+    .object-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+      transition: 0.2s;
+    }
+
+    .object-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .object-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .object-info {
+      padding: 17px;
+    }
+
+    .object-info h3 {
+      color: #1e293b;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .object-info p {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .object-info strong {
+      color: #334155;
+    }
+
+    /* STATUS */
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .status.perdido {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .status.achado {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .status.recuperado {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    /* BOTÕES */
+
+    .card-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .edit-button,
+    .recover-button,
+    .delete-button {
+      flex: 1;
+      border: none;
+      padding: 10px 6px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .edit-button {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .edit-button:hover {
+      background: #bfdbfe;
+    }
+
+    .recover-button {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .recover-button:hover {
+      background: #bbf7d0;
+    }
+
+    .delete-button {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .delete-button:hover {
+      background: #fecaca;
+    }
+
+    /* VAZIO */
+
+    .empty {
+      background: white;
+      border-radius: 15px;
+      padding: 50px 20px;
+      text-align: center;
+      color: #64748b;
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    .empty h3 {
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    /* MODAL */
+
+    .modal-background {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .modal-header h2 {
+      color: #1d4ed8;
+    }
+
+    .close-button {
+      border: none;
+      background: #f1f5f9;
+      color: #475569;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      outline: none;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #2563eb;
+    }
+
+    .save-button {
+      width: 100%;
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 13px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .save-button:hover {
+      background: #1d4ed8;
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 700px) {
+
+      .navbar {
+        padding: 14px 5%;
+      }
+
+      .navbar-brand {
+        font-size: 17px;
+      }
+
+      .back-button {
+        font-size: 12px;
+        padding: 9px 11px;
+      }
+
+      .container {
+        width: 92%;
+        padding: 22px 0;
+      }
+
+      .header {
+        padding: 23px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .card-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="navbar-brand">
+      Achados & Perdidos
+
+      <span>
+        IFSP Campus Capivari
+      </span>
+    </div>
+
+    <button
+      class="back-button"
+      onclick="window.location.href='texte.html'"
+    >
+      ← Voltar aos objetos
+    </button>
+
+  </nav>
+
+
+  <!-- CONTEÚDO -->
+
+  <main class="container">
+
+    <section class="header">
+
+      <h1>
+        📦 Meus objetos
+      </h1>
+
+      <p>
+        Visualize e gerencie os objetos
+        cadastrados no sistema.
+      </p>
+
+    </section>
+
+
+    <!-- ESTATÍSTICAS -->
+
+    <section class="stats">
+
+      <div class="stat-card">
+
+        <h3>
+          Total cadastrados
+        </h3>
+
+        <strong id="totalObjects">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <h3>
+          Perdidos
+        </h3>
+
+        <strong id="lostObjects">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <h3>
+          Achados
+        </h3>
+
+        <strong id="foundObjects">
+          0
+        </strong>
+
+      </div>
+
+    </section>
+
+
+    <!-- LISTA -->
+
+    <div class="section-title">
+
+      <h2>
+        Objetos cadastrados
+      </h2>
+
+    </div>
+
+
+    <div
+      id="objectsGrid"
+      class="objects-grid"
+    ></div>
+
+  </main>
+
+
+  <!-- MODAL DE EDIÇÃO -->
+
+  <div
+    id="editModal"
+    class="modal-background hidden"
+  >
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <h2>
+          Editar objeto
+        </h2>
+
+        <button
+          class="close-button"
+          onclick="closeEditModal()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="editForm">
+
+        <div class="form-group">
+
+          <label for="editName">
+            Nome do objeto
+          </label>
+
+          <input
+            type="text"
+            id="editName"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="editDescription">
+            Descrição
+          </label>
+
+          <input
+            type="text"
+            id="editDescription"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="editLocation">
+            Local
+          </label>
+
+          <select
+            id="editLocation"
+            required
+          >
+
+            <option value="Refeitório">
+              Refeitório
+            </option>
+
+            <option value="Banheiro feminino">
+              Banheiro feminino
+            </option>
+
+            <option value="Banheiro masculino">
+              Banheiro masculino
+            </option>
+
+            <option value="Sala de aula">
+              Sala de aula
+            </option>
+
+            <option value="Biblioteca">
+              Biblioteca
+            </option>
+
+            <option value="Pátio">
+              Pátio
+            </option>
+
+            <option value="Laboratório">
+              Laboratório
+            </option>
+
+            <option value="Quadra">
+              Quadra
+            </option>
+
+            <option value="Corredor">
+              Corredor
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="editStatus">
+            Situação
+          </label>
+
+          <select
+            id="editStatus"
+            required
+          >
+
+            <option value="perdido">
+              Perdido
+            </option>
+
+            <option value="achado">
+              Achado
+            </option>
+
+            <option value="recuperado">
+              Recuperado
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="editContact">
+            Contato
+          </label>
+
+          <input
+            type="text"
+            id="editContact"
+            required
+          >
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="save-button"
+        >
+          Salvar alterações
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* ==========================
+       CARREGAR OBJETOS
+    ========================== */
+
+    let objetos =
+      JSON.parse(
+        localStorage.getItem("objetos")
+      ) || [];
+
+
+    let objetoEditando = null;
+
+
+    /* ==========================
+       SALVAR OBJETOS
+    ========================== */
+
+    function salvarObjetos() {
+
+      localStorage.setItem(
+        "objetos",
+        JSON.stringify(objetos)
+      );
+
+    }
+
+
+    /* ==========================
+       EXIBIR OBJETOS
+    ========================== */
+
+    function renderObjects() {
+
+      const grid =
+        document.getElementById(
+          "objectsGrid"
+        );
+
+      grid.innerHTML = "";
+
+
+      /* ESTATÍSTICAS */
+
+      const total =
+        objetos.length;
+
+
+      const perdidos =
+        objetos.filter(function(objeto) {
+
+          return objeto.status === "perdido";
+
+        }).length;
+
+
+      const achados =
+        objetos.filter(function(objeto) {
+
+          return objeto.status === "achado";
+
+        }).length;
+
+
+      document.getElementById(
+        "totalObjects"
+      ).textContent = total;
+
+
+      document.getElementById(
+        "lostObjects"
+      ).textContent = perdidos;
+
+
+      document.getElementById(
+        "foundObjects"
+      ).textContent = achados;
+
+
+      /* NENHUM OBJETO */
+
+      if (objetos.length === 0) {
+
+        grid.innerHTML = `
+
+          <div class="empty">
+
+            <div class="empty-icon">
+              📦
+            </div>
+
+            <h3>
+              Nenhum objeto cadastrado
+            </h3>
+
+            <p>
+              Os objetos cadastrados aparecerão aqui.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      /* CRIAR CARDS */
+
+      objetos.forEach(function(objeto) {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "object-card";
+
+
+        let statusTexto =
+          "Achado";
+
+
+        if (
+          objeto.status === "perdido"
+        ) {
+
+          statusTexto =
+            "Perdido";
+
+        }
+
+
+        if (
+          objeto.status === "recuperado"
+        ) {
+
+          statusTexto =
+            "Recuperado";
+
+        }
+
+
+        card.innerHTML = `
+
+          <img
+            src="${
+              objeto.imagem ||
+              "https://via.placeholder.com/800x500?text=Objeto"
+            }"
+
+            alt="${objeto.nome}"
+
+            onerror="
+              this.src='https://via.placeholder.com/800x500?text=Imagem+do+objeto'
+            "
+          >
+
+
+          <div class="object-info">
+
+            <h3>
+              ${objeto.nome}
+            </h3>
+
+
+            <p>
+              <strong>
+                Descrição:
+              </strong>
+
+              ${objeto.descricao}
+            </p>
+
+
+            <p>
+              <strong>
+                Local:
+              </strong>
+
+              ${objeto.local}
+            </p>
+
+
+            <p>
+              <strong>
+                Contato:
+              </strong>
+
+              ${objeto.contato}
+            </p>
+
+
+            <span
+              class="status ${objeto.status}"
+            >
+              ${statusTexto}
+            </span>
+
+
+            <div class="card-buttons">
+
+              <button
+                class="edit-button"
+                onclick="
+                  openEditModal(${objeto.id})
+                "
+              >
+                ✏️ Editar
+              </button>
+
+
+              ${
+                objeto.status !== "recuperado"
+                ? `
+                  <button
+                    class="recover-button"
+                    onclick="
+                      recoverObject(${objeto.id})
+                    "
+                  >
+                    ✅ Recuperado
+                  </button>
+                `
+                : ""
+              }
+
+
+              <button
+                class="delete-button"
+                onclick="
+                  deleteObject(${objeto.id})
+                "
+              >
+                🗑️ Excluir
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+      });
+
+    }
+
+
+    /* ==========================
+       EXCLUIR
+    ========================== */
+
+    function deleteObject(id) {
+
+      const confirmar =
+        confirm(
+          "Tem certeza que deseja excluir este objeto?"
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      objetos =
+        objetos.filter(function(objeto) {
+
+          return objeto.id !== id;
+
+        });
+
+
+      salvarObjetos();
+
+      renderObjects();
+
+    }
+
+
+    /* ==========================
+       RECUPERADO
+    ========================== */
+
+    function recoverObject(id) {
+
+      const objeto =
+        objetos.find(function(objeto) {
+
+          return objeto.id === id;
+
+        });
+
+
+      if (!objeto) {
+        return;
+      }
+
+
+      const confirmar =
+        confirm(
+          "Deseja marcar este objeto como recuperado?"
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      objeto.status =
+        "recuperado";
+
+
+      salvarObjetos();
+
+      renderObjects();
+
+
+      alert(
+        "Objeto marcado como recuperado!"
+      );
+
+    }
+
+
+    /* ==========================
+       ABRIR EDIÇÃO
+    ========================== */
+
+    function openEditModal(id) {
+
+      const objeto =
+        objetos.find(function(objeto) {
+
+          return objeto.id === id;
+
+        });
+
+
+      if (!objeto) {
+        return;
+      }
+
+
+      objetoEditando = id;
+
+
+      document.getElementById(
+        "editName"
+      ).value =
+        objeto.nome;
+
+
+      document.getElementById(
+        "editDescription"
+      ).value =
+        objeto.descricao;
+
+
+      document.getElementById(
+        "editLocation"
+      ).value =
+        objeto.local;
+
+
+      document.getElementById(
+        "editStatus"
+      ).value =
+        objeto.status;
+
+
+      document.getElementById(
+        "editContact"
+      ).value =
+        objeto.contato;
+
+
+      document.getElementById(
+        "editModal"
+      ).classList.remove(
+        "hidden"
+      );
+
+    }
+
+
+    /* ==========================
+       FECHAR MODAL
+    ========================== */
+
+    function closeEditModal() {
+
+      document.getElementById(
+        "editModal"
+      ).classList.add(
+        "hidden"
+      );
+
+
+      objetoEditando = null;
+
+    }
+
+
+    /* ==========================
+       SALVAR EDIÇÃO
+    ========================== */
+
+    document
+      .getElementById("editForm")
+      .addEventListener(
+        "submit",
+        function(event) {
+
+          event.preventDefault();
+
+
+          const objeto =
+            objetos.find(function(objeto) {
+
+              return objeto.id ===
+                objetoEditando;
+
+            });
+
+
+          if (!objeto) {
+            return;
+          }
+
+
+          objeto.nome =
+            document.getElementById(
+              "editName"
+            ).value.trim();
+
+
+          objeto.descricao =
+            document.getElementById(
+              "editDescription"
+            ).value.trim();
+
+
+          objeto.local =
+            document.getElementById(
+              "editLocation"
+            ).value;
+
+
+          objeto.status =
+            document.getElementById(
+              "editStatus"
+            ).value;
+
+
+          objeto.contato =
+            document.getElementById(
+              "editContact"
+            ).value.trim();
+
+
+          salvarObjetos();
+
+          closeEditModal();
+
+          renderObjects();
+
+
+          alert(
+            "Objeto atualizado com sucesso!"
+          );
+
+        }
+      );
+
+
+    /* ==========================
+       FECHAR CLICANDO FORA
+    ========================== */
+
+    document
+      .getElementById("editModal")
+      .addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            event.target === this
+          ) {
+
+            closeEditModal();
+
+          }
+
+        }
+      );
+
+
+    /* ==========================
+       INICIAR
+    ========================== */
+
+    renderObjects();
+
+  </script>
+
+</body>
+
+</html>
