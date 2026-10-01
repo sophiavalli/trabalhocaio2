@@ -1,202 +1,181 @@
-🔎 Sistema de Achados e Perdidos
+🔎 Achados & Perdidos — IFSP Campus Capivari
 
-Uma plataforma para facilitar o registro, identificação e devolução de objetos perdidos ou encontrados, conectando pessoas que perderam seus pertences com quem os encontrou.
+Um site simples para ajudar alunos e funcionários do IFSP Campus Capivari a encontrar objetos perdidos ou cadastrar objetos encontrados.
 
-📋 Como funciona
+📌 Sobre o projeto
 
-O sistema funciona através de um fluxo simples e seguro:
+O sistema permite:
 
-1. 📝 Registro
+Criar uma conta
 
-O usuário acessa a plataforma e cria uma publicação informando se:
+Fazer login
 
-🔴 Perdeu um objeto
+Visualizar objetos cadastrados
 
-🟢 Encontrou um objeto
+Pesquisar objetos
 
-A publicação pode conter informações como:
+Filtrar entre objetos perdidos e achados
 
-Descrição do objeto
+Cadastrar novos objetos
 
-Foto, se disponível
+Adicionar uma imagem do objeto
 
-Local onde foi perdido ou encontrado
+Ver o contato relacionado ao objeto
 
-Data e horário
+Sair da conta
 
-Características específicas do objeto
+🖥️ Como funciona
+Tela inicial
 
-2. ✅ Validação
+Ao abrir o site, o usuário encontra duas opções:
 
-O sistema analisa as informações cadastradas, verificando os dados fornecidos e preparando-os para comparação com outros registros existentes.
+Entrar
 
-3. 🔍 Cruzamento de informações
+Criar uma conta
 
-As informações das publicações são comparadas para identificar possíveis correspondências.
+Cadastro
 
-O sistema pode considerar fatores como:
+Para criar uma conta, o usuário informa:
 
-Localização
+Nome completo
 
-Data
+E-mail
 
-Categoria do objeto
+Telefone
+
+Senha
+
+Login
+
+Para entrar no sistema, o usuário informa:
+
+E-mail
+
+Senha
+
+Se os dados estiverem corretos, a página principal é exibida.
+
+🔎 Pesquisar objetos
+
+Na página principal existe uma barra de pesquisa.
+
+É possível pesquisar pelo:
+
+Nome do objeto
 
 Descrição
 
-Características específicas
+Local
 
-Imagens, quando disponíveis
+A pesquisa também funciona enquanto o usuário digita.
 
-4. 🔐 Verificação de identidade
+🏷️ Filtros
 
-Para reduzir o risco de fraudes ou golpes, o sistema pode solicitar informações que somente o verdadeiro proprietário provavelmente conheceria.
+Os objetos podem ser separados em:
 
-Por exemplo:
+Todos
 
-"Qual era o papel de parede do celular?"
+Perdidos
 
-"Qual o nome gravado na carteira?"
+Achados
 
-"Qual objeto estava dentro da mochila?"
+➕ Adicionar objeto
 
-Essas informações não precisam ser exibidas publicamente na publicação.
+O usuário pode cadastrar um objeto preenchendo:
 
-5. 🤝 Devolução
+Nome do objeto
 
-Após a confirmação da identidade, as partes podem combinar a devolução do objeto.
+Descrição
 
-Recomenda-se que a entrega seja realizada em um local público e seguro, como:
+Local
 
-Estações de metrô
+Situação
 
-Postos policiais
+Contato
 
-Delegacias
+Imagem
 
-Centrais de achados e perdidos
+A situação pode ser:
 
-Outros pontos credenciados
+Perdido
 
-🛡️ Segurança e Privacidade
+Achado
 
-A plataforma deve priorizar a segurança dos usuários e a proteção de seus dados pessoais.
+📍 Locais disponíveis
 
-🔒 Ocultação de dados sensíveis
+O cadastro possui alguns locais do IFSP Campus Capivari:
 
-Informações pessoais e documentos não devem ser expostos publicamente.
+Refeitório
 
-Por exemplo, dados como:
+Banheiro feminino
 
-CPF
+Banheiro masculino
 
-RG
+Sala de aula
 
-Número de telefone
+Biblioteca
 
-Endereço residencial
+Pátio
 
-Documentos pessoais
+Laboratório
 
-devem possuir mecanismos de proteção e, quando necessário, serem parcialmente ocultados.
+Quadra
 
-🔑 Validação por perguntas secretas
+Corredor
 
-O proprietário pode ser solicitado a responder perguntas sobre características que não aparecem nas fotos ou na descrição pública.
+🖼️ Imagem
 
-Isso ajuda a verificar se a pessoa realmente possui conhecimento sobre o objeto.
+É possível escolher uma imagem do objeto pelo computador ou celular.
 
-📍 Locais seguros para retirada
+Depois de selecionar a imagem, uma prévia é mostrada no formulário antes do cadastro.
 
-A plataforma deve recomendar que os usuários evitem encontros em locais isolados.
+📞 Contato
 
-Sempre que possível, a devolução deve acontecer em ambientes públicos, movimentados e seguros.
+Cada objeto possui um contato.
 
-🏢 Exemplos de aplicação
+Ao clicar em "Ver contato", o sistema mostra o contato cadastrado.
 
-O sistema pode ser utilizado em diferentes ambientes:
+💻 Tecnologias utilizadas
 
-🚇 Transporte público
+O projeto foi feito utilizando:
 
-Integração com:
+HTML
 
-Metrôs
+CSS
 
-Trens
+JavaScript
 
-Ônibus urbanos
+Não é necessário instalar nenhuma biblioteca para executar o projeto.
 
-Terminais rodoviários
+📂 Estrutura
 
-🎪 Eventos e festivais
+O projeto pode ser composto apenas pelo arquivo:
 
-Pode ser utilizado para administrar objetos perdidos durante:
+index.html
 
-Shows
 
-Festivais
+Dentro dele estão:
 
-Feiras
+HTML → estrutura do site
 
-Convenções
+CSS → aparência e responsividade
 
-Eventos esportivos
+JavaScript → funcionamento do sistema
 
-🎓 Campi universitários
+▶️ Como executar
 
-Universidades podem utilizar a plataforma para administrar pertences esquecidos ou encontrados em:
+Baixe ou clone o projeto.
 
-Salas de aula
+Abra a pasta do projeto.
 
-Bibliotecas
+Abra o arquivo index.html no navegador.
 
-Laboratórios
+Pronto! O sistema será executado.
 
-Áreas comuns
+⚠️ Observação
 
-🏛️ Prefeituras e serviços públicos
+Este projeto utiliza dados armazenados diretamente no JavaScript.
 
-Órgãos públicos podem utilizar a plataforma para centralizar registros de objetos e documentos encontrados pela população.
+Por isso, os usuários e objetos cadastrados são perdidos quando a página é recarregada.
 
-🎯 Objetivo do projeto
-
-O principal objetivo é criar uma solução simples e segura para aumentar as chances de recuperação de objetos perdidos.
-
-A plataforma busca:
-
-Facilitar o registro de objetos perdidos e encontrados
-
-Automatizar a busca por possíveis correspondências
-
-Reduzir tentativas de fraude
-
-Proteger informações pessoais
-
-Facilitar a comunicação entre as partes
-
-Tornar o processo de devolução mais seguro
-
-
-🚀 Possíveis funcionalidades futuras
-
-📸 Reconhecimento de imagens
-
-🤖 Sistema inteligente de correspondência
-
-📍 Integração com mapas
-
-🔔 Notificações sobre possíveis correspondências
-
-👤 Sistema de contas e perfis
-
-🔐 Autenticação segura
-
-📊 Painel administrativo
-
-🏢 Integração com empresas e órgãos públicos
-
-📱 Aplicativo para dispositivos móveis
-
-📄 Licença
-
-Este projeto pode receber uma licença de código aberto conforme as necessidades dos desenvolvedores e da organização responsável pelo projeto.
+Os objetos que aparecem inicialmente no site são apenas exemplos para demonstrar o funcionamento do sistema.
