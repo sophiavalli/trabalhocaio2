@@ -33,7 +33,9 @@
       display: none !important;
     }
 
-    /* TELA INICIAL */
+    /* =========================
+       TELA INICIAL
+    ========================= */
 
     .welcome-screen {
       min-height: 100vh;
@@ -118,7 +120,9 @@
       background: #cbd5e1;
     }
 
-    /* AUTENTICAÇÃO */
+    /* =========================
+       AUTENTICAÇÃO
+    ========================= */
 
     .auth-screen {
       min-height: 100vh;
@@ -211,7 +215,9 @@
       color: #16a34a;
     }
 
-    /* HOME */
+    /* =========================
+       HOME
+    ========================= */
 
     .home-screen {
       min-height: 100vh;
@@ -323,6 +329,10 @@
       background: #1d4ed8;
     }
 
+    /* =========================
+       BOTÕES / FILTROS
+    ========================= */
+
     .actions-row {
       display: flex;
       justify-content: space-between;
@@ -345,6 +355,7 @@
       padding: 10px 16px;
       border-radius: 8px;
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .filter-button.active,
@@ -366,6 +377,68 @@
     .add-button:hover {
       background: #15803d;
     }
+
+    /* =========================
+       PÁGINA MEUS OBJETOS
+    ========================= */
+
+    .my-objects-header {
+      background: white;
+      border-radius: 15px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .my-objects-header h2 {
+      color: #1d4ed8;
+      margin-bottom: 5px;
+    }
+
+    .my-objects-header p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .back-home-button {
+      border: none;
+      background: #e2e8f0;
+      color: #334155;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .back-home-button:hover {
+      background: #cbd5e1;
+    }
+
+    .my-object-card {
+      position: relative;
+    }
+
+    .delete-button {
+      width: 100%;
+      border: none;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .delete-button:hover {
+      background: #fecaca;
+    }
+
+    /* =========================
+       OBJETOS
+    ========================= */
 
     .objects-title {
       margin-bottom: 18px;
@@ -462,7 +535,9 @@
       grid-column: 1 / -1;
     }
 
-    /* MODAL */
+    /* =========================
+       MODAL
+    ========================= */
 
     .modal-background {
       position: fixed;
@@ -524,7 +599,9 @@
       display: none;
     }
 
-    /* RESPONSIVIDADE */
+    /* =========================
+       RESPONSIVIDADE
+    ========================= */
 
     @media (max-width: 650px) {
       .welcome-card {
@@ -573,7 +650,20 @@
         width: 100%;
       }
 
+      .filter-button {
+        flex: 1;
+      }
+
       .add-button {
+        width: 100%;
+      }
+
+      .my-objects-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .back-home-button {
         width: 100%;
       }
 
@@ -586,10 +676,14 @@
 
 <body>
 
-  <!-- TELA DE BOAS-VINDAS -->
+  <!-- =========================
+       TELA DE BOAS-VINDAS
+  ========================= -->
 
   <section id="welcomeScreen" class="welcome-screen">
+
     <div class="welcome-card">
+
       <div class="logo">🔎</div>
 
       <h1>Achados & Perdidos</h1>
@@ -602,6 +696,7 @@
       </p>
 
       <div class="welcome-buttons">
+
         <button class="primary-button" onclick="showLogin()">
           Entrar
         </button>
@@ -609,15 +704,22 @@
         <button class="secondary-button" onclick="showRegister()">
           Criar uma conta
         </button>
+
       </div>
+
     </div>
+
   </section>
 
 
-  <!-- TELA DE LOGIN -->
+  <!-- =========================
+       LOGIN
+  ========================= -->
 
   <section id="loginScreen" class="auth-screen hidden">
+
     <div class="auth-card">
+
       <h2>Entrar na conta</h2>
 
       <p class="subtitle">
@@ -625,29 +727,41 @@
       </p>
 
       <form id="loginForm">
+
         <div class="form-group">
-          <label for="loginEmail">E-mail</label>
+
+          <label for="loginEmail">
+            E-mail
+          </label>
+
           <input
             type="email"
             id="loginEmail"
             placeholder="Digite seu e-mail"
             required
           />
+
         </div>
 
         <div class="form-group">
-          <label for="loginPassword">Senha</label>
+
+          <label for="loginPassword">
+            Senha
+          </label>
+
           <input
             type="password"
             id="loginPassword"
             placeholder="Digite sua senha"
             required
           />
+
         </div>
 
         <button type="submit" class="primary-button">
           Entrar
         </button>
+
       </form>
 
       <p id="loginMessage" class="message"></p>
@@ -655,14 +769,20 @@
       <button class="back-button" onclick="showWelcome()">
         Voltar
       </button>
+
     </div>
+
   </section>
 
 
-  <!-- TELA DE CADASTRO -->
+  <!-- =========================
+       CADASTRO
+  ========================= -->
 
   <section id="registerScreen" class="auth-screen hidden">
+
     <div class="auth-card">
+
       <h2>Criar uma conta</h2>
 
       <p class="subtitle">
@@ -670,49 +790,71 @@
       </p>
 
       <form id="registerForm">
+
         <div class="form-group">
-          <label for="registerName">Nome completo</label>
+
+          <label for="registerName">
+            Nome completo
+          </label>
+
           <input
             type="text"
             id="registerName"
             placeholder="Digite seu nome"
             required
           />
+
         </div>
 
         <div class="form-group">
-          <label for="registerEmail">E-mail</label>
+
+          <label for="registerEmail">
+            E-mail
+          </label>
+
           <input
             type="email"
             id="registerEmail"
             placeholder="Digite seu e-mail"
             required
           />
+
         </div>
 
         <div class="form-group">
-          <label for="registerPhone">Telefone</label>
+
+          <label for="registerPhone">
+            Telefone
+          </label>
+
           <input
             type="tel"
             id="registerPhone"
             placeholder="Digite seu telefone"
             required
           />
+
         </div>
 
         <div class="form-group">
-          <label for="registerPassword">Senha</label>
+
+          <label for="registerPassword">
+            Senha
+          </label>
+
           <input
             type="password"
             id="registerPassword"
             placeholder="Crie uma senha"
             required
           />
+
         </div>
 
         <button type="submit" class="primary-button">
           Cadastrar
         </button>
+
       </form>
 
       <p id="registerMessage" class="message"></p>
@@ -720,55 +862,87 @@
       <button class="back-button" onclick="showWelcome()">
         Voltar
       </button>
+
     </div>
+
   </section>
 
 
-  <!-- TELA PRINCIPAL -->
+  <!-- =========================
+       TELA PRINCIPAL
+  ========================= -->
 
   <section id="homeScreen" class="home-screen hidden">
 
     <nav class="navbar">
+
       <div class="navbar-brand">
+
         Achados & Perdidos
-        <span>IFSP Campus Capivari</span>
+
+        <span>
+          IFSP Campus Capivari
+        </span>
+
       </div>
 
       <button class="logout-button" onclick="logout()">
         Sair
       </button>
+
     </nav>
+
 
     <main class="home-content">
 
       <div class="home-header">
-        <h1>Olá, seja bem-vindo! 👋</h1>
+
+        <h1>
+          Olá, seja bem-vindo! 👋
+        </h1>
 
         <p>
           Encontre objetos perdidos ou cadastre um objeto que você
           encontrou dentro do IFSP Campus Capivari.
         </p>
+
       </div>
 
+
+      <!-- PESQUISA -->
+
       <div class="search-area">
-        <h3>Pesquisar objetos</h3>
+
+        <h3>
+          Pesquisar objetos
+        </h3>
 
         <div class="search-row">
+
           <input
             type="text"
             id="searchInput"
             placeholder="Pesquise por celular, mochila, carteira..."
           />
 
-          <button class="search-button" onclick="searchObjects()">
+          <button
+            class="search-button"
+            onclick="searchObjects()"
+          >
             Pesquisar
           </button>
+
         </div>
+
       </div>
+
+
+      <!-- FILTROS -->
 
       <div class="actions-row">
 
         <div class="filters">
+
           <button
             class="filter-button active"
             onclick="filterObjects('todos', this)"
@@ -789,61 +963,183 @@
           >
             Achados
           </button>
+
+          <!-- MEUS OBJETOS -->
+          <button
+            class="filter-button"
+            onclick="showMyObjects()"
+          >
+            Meus objetos
+          </button>
+
         </div>
 
-        <button class="add-button" onclick="openModal()">
+        <button
+          class="add-button"
+          onclick="openModal()"
+        >
           + Adicionar objeto
         </button>
 
       </div>
 
-      <h2 class="objects-title">Objetos cadastrados</h2>
 
-      <div id="objectsGrid" class="objects-grid"></div>
+      <h2 class="objects-title">
+        Objetos cadastrados
+      </h2>
+
+      <div
+        id="objectsGrid"
+        class="objects-grid"
+      ></div>
 
     </main>
+
   </section>
 
 
-  <!-- MODAL PARA ADICIONAR OBJETO -->
+  <!-- =========================
+       TELA MEUS OBJETOS
+  ========================= -->
 
-  <div id="modalBackground" class="modal-background hidden">
+  <section
+    id="myObjectsScreen"
+    class="home-screen hidden"
+  >
+
+    <nav class="navbar">
+
+      <div class="navbar-brand">
+
+        Achados & Perdidos
+
+        <span>
+          IFSP Campus Capivari
+        </span>
+
+      </div>
+
+      <button
+        class="logout-button"
+        onclick="logout()"
+      >
+        Sair
+      </button>
+
+    </nav>
+
+
+    <main class="home-content">
+
+      <div class="my-objects-header">
+
+        <div>
+
+          <h2>
+            Meus objetos
+          </h2>
+
+          <p>
+            Aqui estão os objetos que você cadastrou.
+          </p>
+
+        </div>
+
+        <button
+          class="back-home-button"
+          onclick="showHome()"
+        >
+          ← Voltar para objetos
+        </button>
+
+      </div>
+
+
+      <div
+        id="myObjectsGrid"
+        class="objects-grid"
+      ></div>
+
+    </main>
+
+  </section>
+
+
+  <!-- =========================
+       MODAL ADICIONAR OBJETO
+  ========================= -->
+
+  <div
+    id="modalBackground"
+    class="modal-background hidden"
+  >
+
     <div class="modal">
 
       <div class="modal-header">
-        <h2>Adicionar objeto</h2>
 
-        <button class="close-button" onclick="closeModal()">
+        <h2>
+          Adicionar objeto
+        </h2>
+
+        <button
+          class="close-button"
+          onclick="closeModal()"
+        >
           ×
         </button>
+
       </div>
+
 
       <form id="objectForm">
 
         <div class="form-group">
-          <label for="objectName">Nome do objeto</label>
+
+          <label for="objectName">
+            Nome do objeto
+          </label>
+
           <input
             type="text"
             id="objectName"
             placeholder="Ex: Celular, mochila, carteira..."
             required
           />
+
         </div>
 
+
         <div class="form-group">
-          <label for="objectDescription">Descrição</label>
+
+          <label for="objectDescription">
+            Descrição
+          </label>
+
           <input
             type="text"
             id="objectDescription"
             placeholder="Descreva o objeto"
             required
           />
+
         </div>
 
+
         <div class="form-group">
-          <label for="objectLocation">Local</label>
-          <select id="objectLocation" required>
-            <option value="">Selecione o local</option>
+
+          <label for="objectLocation">
+            Local
+          </label>
+
+          <select
+            id="objectLocation"
+            required
+          >
+
+            <option value="">
+              Selecione o local
+            </option>
 
             <option value="Refeitório — IFSP Campus Capivari">
               Refeitório
@@ -880,30 +1176,62 @@
             <option value="Corredor — IFSP Campus Capivari">
               Corredor
             </option>
+
           </select>
+
         </div>
 
-        <div class="form-group">
-          <label for="objectStatus">Situação</label>
-          <select id="objectStatus" required>
-            <option value="">Selecione a situação</option>
-            <option value="perdido">Perdido</option>
-            <option value="achado">Achado</option>
-          </select>
-        </div>
 
         <div class="form-group">
-          <label for="objectContact">Contato</label>
+
+          <label for="objectStatus">
+            Situação
+          </label>
+
+          <select
+            id="objectStatus"
+            required
+          >
+
+            <option value="">
+              Selecione a situação
+            </option>
+
+            <option value="perdido">
+              Perdido
+            </option>
+
+            <option value="achado">
+              Achado
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="objectContact">
+            Contato
+          </label>
+
           <input
             type="text"
             id="objectContact"
             placeholder="E-mail ou telefone para contato"
             required
           />
+
         </div>
 
+
         <div class="form-group">
-          <label for="objectImage">Imagem do objeto</label>
+
+          <label for="objectImage">
+            Imagem do objeto
+          </label>
+
           <input
             type="file"
             id="objectImage"
@@ -915,29 +1243,48 @@
             class="image-preview"
             alt="Prévia da imagem"
           />
+
         </div>
 
-        <button type="submit" class="primary-button">
+
+        <button
+          type="submit"
+          class="primary-button"
+        >
           Cadastrar objeto
         </button>
 
       </form>
+
     </div>
+
   </div>
 
 
   <script>
-    // LISTA DE USUÁRIOS CADASTRADOS
+
+    /* =========================
+       USUÁRIOS
+    ========================= */
+
     let usuarios = [];
 
-    // USUÁRIO LOGADO
     let usuarioLogado = null;
 
-    // FILTRO ATUAL
+
+    /* =========================
+       FILTRO
+    ========================= */
+
     let filtroAtual = "todos";
 
-    // OBJETOS DE EXEMPLO
+
+    /* =========================
+       OBJETOS
+    ========================= */
+
     let objetos = [
+
       {
         id: 1,
         nome: "Celular preto",
@@ -945,8 +1292,10 @@
         local: "Refeitório — IFSP Campus Capivari",
         status: "perdido",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
+        imagem: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 2,
         nome: "Mochila azul",
@@ -954,8 +1303,10 @@
         local: "Sala de aula — IFSP Campus Capivari",
         status: "achado",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800"
+        imagem: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 3,
         nome: "Carteira marrom",
@@ -963,8 +1314,10 @@
         local: "Biblioteca — IFSP Campus Capivari",
         status: "perdido",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800"
+        imagem: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 4,
         nome: "Garrafa de água",
@@ -972,8 +1325,10 @@
         local: "Pátio — IFSP Campus Capivari",
         status: "achado",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800"
+        imagem: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 5,
         nome: "Óculos de grau",
@@ -981,8 +1336,10 @@
         local: "Banheiro feminino — IFSP Campus Capivari",
         status: "perdido",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800"
+        imagem: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 6,
         nome: "Fone de ouvido",
@@ -990,8 +1347,10 @@
         local: "Corredor — IFSP Campus Capivari",
         status: "achado",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=800"
+        imagem: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 7,
         nome: "Estojo escolar",
@@ -999,8 +1358,10 @@
         local: "Laboratório — IFSP Campus Capivari",
         status: "perdido",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=800"
+        imagem: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       },
+
       {
         id: 8,
         nome: "Chaves",
@@ -1008,169 +1369,344 @@
         local: "Quadra — IFSP Campus Capivari",
         status: "achado",
         contato: "secretaria@ifsp.edu.br",
-        imagem: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"
+        imagem: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+        usuarioEmail: "secretaria@ifsp.edu.br"
       }
+
     ];
 
-    // ELEMENTOS DAS TELAS
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const loginScreen = document.getElementById("loginScreen");
-    const registerScreen = document.getElementById("registerScreen");
-    const homeScreen = document.getElementById("homeScreen");
 
-    // MOSTRAR TELA INICIAL
+    /* =========================
+       ELEMENTOS
+    ========================= */
+
+    const welcomeScreen =
+      document.getElementById("welcomeScreen");
+
+    const loginScreen =
+      document.getElementById("loginScreen");
+
+    const registerScreen =
+      document.getElementById("registerScreen");
+
+    const homeScreen =
+      document.getElementById("homeScreen");
+
+    const myObjectsScreen =
+      document.getElementById("myObjectsScreen");
+
+
+    /* =========================
+       MOSTRAR WELCOME
+    ========================= */
+
     function showWelcome() {
+
       welcomeScreen.classList.remove("hidden");
+
       loginScreen.classList.add("hidden");
+
       registerScreen.classList.add("hidden");
+
       homeScreen.classList.add("hidden");
+
+      myObjectsScreen.classList.add("hidden");
+
     }
 
-    // MOSTRAR LOGIN
+
+    /* =========================
+       LOGIN
+    ========================= */
+
     function showLogin() {
+
       welcomeScreen.classList.add("hidden");
+
       loginScreen.classList.remove("hidden");
+
       registerScreen.classList.add("hidden");
+
       homeScreen.classList.add("hidden");
+
+      myObjectsScreen.classList.add("hidden");
+
     }
 
-    // MOSTRAR CADASTRO
+
+    /* =========================
+       CADASTRO
+    ========================= */
+
     function showRegister() {
+
       welcomeScreen.classList.add("hidden");
+
       loginScreen.classList.add("hidden");
+
       registerScreen.classList.remove("hidden");
+
       homeScreen.classList.add("hidden");
+
+      myObjectsScreen.classList.add("hidden");
+
     }
 
-    // MOSTRAR HOME
+
+    /* =========================
+       HOME
+    ========================= */
+
     function showHome() {
+
       welcomeScreen.classList.add("hidden");
+
       loginScreen.classList.add("hidden");
+
       registerScreen.classList.add("hidden");
+
+      myObjectsScreen.classList.add("hidden");
+
       homeScreen.classList.remove("hidden");
 
       renderObjects();
+
     }
 
-    // CADASTRO DE USUÁRIO
+
+    /* =========================
+       MEUS OBJETOS
+    ========================= */
+
+    function showMyObjects() {
+
+      if (!usuarioLogado) {
+
+        alert("Você precisa estar logado.");
+
+        return;
+
+      }
+
+      welcomeScreen.classList.add("hidden");
+
+      loginScreen.classList.add("hidden");
+
+      registerScreen.classList.add("hidden");
+
+      homeScreen.classList.add("hidden");
+
+      myObjectsScreen.classList.remove("hidden");
+
+      renderMyObjects();
+
+    }
+
+
+    /* =========================
+       CADASTRO DE USUÁRIO
+    ========================= */
+
     document
       .getElementById("registerForm")
       .addEventListener("submit", function(event) {
+
         event.preventDefault();
 
-        const nome = document
-          .getElementById("registerName")
-          .value
-          .trim();
+        const nome =
+          document
+            .getElementById("registerName")
+            .value
+            .trim();
 
-        const email = document
-          .getElementById("registerEmail")
-          .value
-          .trim();
+        const email =
+          document
+            .getElementById("registerEmail")
+            .value
+            .trim()
+            .toLowerCase();
 
-        const telefone = document
-          .getElementById("registerPhone")
-          .value
-          .trim();
+        const telefone =
+          document
+            .getElementById("registerPhone")
+            .value
+            .trim();
 
-        const senha = document
-          .getElementById("registerPassword")
-          .value;
+        const senha =
+          document
+            .getElementById("registerPassword")
+            .value;
 
-        const registerMessage = document.getElementById("registerMessage");
+        const registerMessage =
+          document.getElementById("registerMessage");
 
-        const usuarioExiste = usuarios.some(function(usuario) {
-          return usuario.email === email;
-        });
+
+        const usuarioExiste =
+          usuarios.some(function(usuario) {
+
+            return usuario.email === email;
+
+          });
+
 
         if (usuarioExiste) {
+
           registerMessage.textContent =
             "Este e-mail já está cadastrado.";
 
-          registerMessage.className = "message error";
+          registerMessage.className =
+            "message error";
+
           return;
+
         }
 
+
         const novoUsuario = {
+
           nome: nome,
+
           email: email,
+
           telefone: telefone,
+
           senha: senha
+
         };
 
+
         usuarios.push(novoUsuario);
+
         usuarioLogado = novoUsuario;
+
 
         registerMessage.textContent =
           "Cadastro realizado com sucesso!";
 
-        registerMessage.className = "message success";
+        registerMessage.className =
+          "message success";
+
 
         setTimeout(function() {
-          document.getElementById("registerForm").reset();
+
+          document
+            .getElementById("registerForm")
+            .reset();
+
           showHome();
+
         }, 700);
+
       });
 
-    // LOGIN
+
+    /* =========================
+       LOGIN
+    ========================= */
+
     document
       .getElementById("loginForm")
       .addEventListener("submit", function(event) {
+
         event.preventDefault();
 
-        const email = document
-          .getElementById("loginEmail")
-          .value
-          .trim();
+        const email =
+          document
+            .getElementById("loginEmail")
+            .value
+            .trim()
+            .toLowerCase();
 
-        const senha = document
-          .getElementById("loginPassword")
-          .value;
+        const senha =
+          document
+            .getElementById("loginPassword")
+            .value;
 
-        const loginMessage = document.getElementById("loginMessage");
+        const loginMessage =
+          document.getElementById("loginMessage");
 
-        const usuarioEncontrado = usuarios.find(function(usuario) {
-          return usuario.email === email && usuario.senha === senha;
-        });
+
+        const usuarioEncontrado =
+          usuarios.find(function(usuario) {
+
+            return (
+              usuario.email === email &&
+              usuario.senha === senha
+            );
+
+          });
+
 
         if (!usuarioEncontrado) {
+
           loginMessage.textContent =
             "E-mail ou senha incorretos.";
 
-          loginMessage.className = "message error";
+          loginMessage.className =
+            "message error";
+
           return;
+
         }
 
-        usuarioLogado = usuarioEncontrado;
+
+        usuarioLogado =
+          usuarioEncontrado;
+
 
         loginMessage.textContent =
           "Login realizado com sucesso!";
 
-        loginMessage.className = "message success";
+        loginMessage.className =
+          "message success";
+
 
         setTimeout(function() {
-          document.getElementById("loginForm").reset();
+
+          document
+            .getElementById("loginForm")
+            .reset();
+
           showHome();
+
         }, 700);
+
       });
 
-    // SAIR
+
+    /* =========================
+       SAIR
+    ========================= */
+
     function logout() {
+
       usuarioLogado = null;
+
       filtroAtual = "todos";
 
-      document.getElementById("searchInput").value = "";
+      document
+        .getElementById("searchInput")
+        .value = "";
 
       showWelcome();
+
     }
 
-    // EXIBIR OBJETOS
+
+    /* =========================
+       EXIBIR OBJETOS
+    ========================= */
+
     function renderObjects(lista = objetos) {
-      const objectsGrid = document.getElementById("objectsGrid");
+
+      const objectsGrid =
+        document.getElementById("objectsGrid");
 
       objectsGrid.innerHTML = "";
 
+
       if (lista.length === 0) {
+
         objectsGrid.innerHTML = `
           <div class="empty-message">
             Nenhum objeto encontrado.
@@ -1178,18 +1714,28 @@
         `;
 
         return;
+
       }
 
+
       lista.forEach(function(objeto) {
-        const statusTexto = objeto.status === "perdido"
-          ? "Perdido"
-          : "Achado";
 
-        const card = document.createElement("div");
+        const statusTexto =
+          objeto.status === "perdido"
+            ? "Perdido"
+            : "Achado";
 
-        card.className = "object-card";
+
+        const card =
+          document.createElement("div");
+
+
+        card.className =
+          "object-card";
+
 
         card.innerHTML = `
+
           <img
             src="${objeto.imagem}"
             alt="${objeto.nome}"
@@ -1197,7 +1743,10 @@
           />
 
           <div class="object-info">
-            <h3>${objeto.nome}</h3>
+
+            <h3>
+              ${objeto.nome}
+            </h3>
 
             <p>
               <strong>Descrição:</strong>
@@ -1219,193 +1768,638 @@
             >
               Ver contato
             </button>
+
           </div>
+
         `;
 
+
         objectsGrid.appendChild(card);
+
       });
+
     }
 
-    // MOSTRAR CONTATO
+
+    /* =========================
+       MEUS OBJETOS
+    ========================= */
+
+    function renderMyObjects() {
+
+      const myObjectsGrid =
+        document.getElementById("myObjectsGrid");
+
+
+      myObjectsGrid.innerHTML = "";
+
+
+      if (!usuarioLogado) {
+
+        myObjectsGrid.innerHTML = `
+
+          <div class="empty-message">
+            Você precisa estar logado.
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      const meusObjetos =
+        objetos.filter(function(objeto) {
+
+          return (
+            objeto.usuarioEmail ===
+            usuarioLogado.email
+          );
+
+        });
+
+
+      if (meusObjetos.length === 0) {
+
+        myObjectsGrid.innerHTML = `
+
+          <div class="empty-message">
+
+            <h3 style="margin-bottom: 8px;">
+              Você ainda não cadastrou nenhum objeto.
+            </h3>
+
+            <p>
+              Clique em "+ Adicionar objeto"
+              para cadastrar seu primeiro objeto.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      meusObjetos.forEach(function(objeto) {
+
+        const statusTexto =
+          objeto.status === "perdido"
+            ? "Perdido"
+            : "Achado";
+
+
+        const card =
+          document.createElement("div");
+
+
+        card.className =
+          "object-card my-object-card";
+
+
+        card.innerHTML = `
+
+          <img
+            src="${objeto.imagem}"
+            alt="${objeto.nome}"
+            onerror="this.src='https://via.placeholder.com/800x500?text=Imagem+do+objeto'"
+          />
+
+          <div class="object-info">
+
+            <h3>
+              ${objeto.nome}
+            </h3>
+
+            <p>
+              <strong>Descrição:</strong>
+              ${objeto.descricao}
+            </p>
+
+            <p>
+              <strong>Local:</strong>
+              ${objeto.local}
+            </p>
+
+            <p>
+              <strong>Contato:</strong>
+              ${objeto.contato}
+            </p>
+
+            <span class="status ${objeto.status}">
+              ${statusTexto}
+            </span>
+
+            <button
+              class="delete-button"
+              onclick="deleteObject(${objeto.id})"
+            >
+              🗑 Excluir objeto
+            </button>
+
+          </div>
+
+        `;
+
+
+        myObjectsGrid.appendChild(card);
+
+      });
+
+    }
+
+
+    /* =========================
+       EXCLUIR OBJETO
+    ========================= */
+
+    function deleteObject(id) {
+
+      if (!usuarioLogado) {
+
+        return;
+
+      }
+
+
+      const objeto =
+        objetos.find(function(item) {
+
+          return item.id === id;
+
+        });
+
+
+      if (!objeto) {
+
+        return;
+
+      }
+
+
+      if (
+        objeto.usuarioEmail !==
+        usuarioLogado.email
+      ) {
+
+        alert(
+          "Você só pode excluir objetos cadastrados por você."
+        );
+
+        return;
+
+      }
+
+
+      const confirmar =
+        confirm(
+          "Tem certeza que deseja excluir este objeto?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      objetos =
+        objetos.filter(function(item) {
+
+          return item.id !== id;
+
+        });
+
+
+      renderMyObjects();
+
+      alert("Objeto excluído com sucesso!");
+
+    }
+
+
+    /* =========================
+       MOSTRAR CONTATO
+    ========================= */
+
     function showContact(contato) {
-      alert("Entre em contato por: " + contato);
+
+      alert(
+        "Entre em contato por: " +
+        contato
+      );
+
     }
 
-    // FILTRAR OBJETOS
+
+    /* =========================
+       FILTRAR OBJETOS
+    ========================= */
+
     function filterObjects(filtro, botao) {
+
       filtroAtual = filtro;
 
-      const botoes = document.querySelectorAll(".filter-button");
+
+      const botoes =
+        document.querySelectorAll(
+          "#homeScreen .filter-button"
+        );
+
 
       botoes.forEach(function(item) {
+
         item.classList.remove("active");
+
       });
+
 
       botao.classList.add("active");
 
+
       aplicarFiltros();
+
     }
 
-    // PESQUISAR OBJETOS
+
+    /* =========================
+       PESQUISAR
+    ========================= */
+
     function searchObjects() {
+
       aplicarFiltros();
+
     }
 
-    // APLICAR FILTRO E PESQUISA
-    function aplicarFiltros() {
-      const pesquisa = document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
 
-      let listaFiltrada = objetos;
+    /* =========================
+       APLICAR FILTROS
+    ========================= */
+
+    function aplicarFiltros() {
+
+      const pesquisa =
+        document
+          .getElementById("searchInput")
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      let listaFiltrada =
+        objetos;
+
 
       if (filtroAtual !== "todos") {
-        listaFiltrada = listaFiltrada.filter(function(objeto) {
-          return objeto.status === filtroAtual;
-        });
+
+        listaFiltrada =
+          listaFiltrada.filter(function(objeto) {
+
+            return (
+              objeto.status ===
+              filtroAtual
+            );
+
+          });
+
       }
+
 
       if (pesquisa !== "") {
-        listaFiltrada = listaFiltrada.filter(function(objeto) {
-          return (
-            objeto.nome.toLowerCase().includes(pesquisa) ||
-            objeto.descricao.toLowerCase().includes(pesquisa) ||
-            objeto.local.toLowerCase().includes(pesquisa)
-          );
-        });
+
+        listaFiltrada =
+          listaFiltrada.filter(function(objeto) {
+
+            return (
+
+              objeto.nome
+                .toLowerCase()
+                .includes(pesquisa)
+
+              ||
+
+              objeto.descricao
+                .toLowerCase()
+                .includes(pesquisa)
+
+              ||
+
+              objeto.local
+                .toLowerCase()
+                .includes(pesquisa)
+
+            );
+
+          });
+
       }
 
-      renderObjects(listaFiltrada);
+
+      renderObjects(
+        listaFiltrada
+      );
+
     }
 
-    // PESQUISA AUTOMÁTICA AO DIGITAR
+
+    /* =========================
+       PESQUISA AUTOMÁTICA
+    ========================= */
+
     document
       .getElementById("searchInput")
-      .addEventListener("input", searchObjects);
+      .addEventListener(
+        "input",
+        searchObjects
+      );
 
-    // ABRIR MODAL
+
+    /* =========================
+       ABRIR MODAL
+    ========================= */
+
     function openModal() {
+
+      if (!usuarioLogado) {
+
+        alert(
+          "Você precisa estar logado para cadastrar um objeto."
+        );
+
+        return;
+
+      }
+
+
       document
         .getElementById("modalBackground")
         .classList.remove("hidden");
+
     }
 
-    // FECHAR MODAL
+
+    /* =========================
+       FECHAR MODAL
+    ========================= */
+
     function closeModal() {
+
       document
         .getElementById("modalBackground")
         .classList.add("hidden");
 
-      document.getElementById("objectForm").reset();
 
-      const imagePreview = document.getElementById("imagePreview");
+      document
+        .getElementById("objectForm")
+        .reset();
 
-      imagePreview.style.display = "none";
+
+      const imagePreview =
+        document.getElementById(
+          "imagePreview"
+        );
+
+
+      imagePreview.style.display =
+        "none";
+
       imagePreview.src = "";
+
     }
 
-    // PRÉVIA DA IMAGEM
+
+    /* =========================
+       PRÉVIA DA IMAGEM
+    ========================= */
+
     document
       .getElementById("objectImage")
-      .addEventListener("change", function(event) {
-        const arquivo = event.target.files[0];
-        const imagePreview = document.getElementById("imagePreview");
+      .addEventListener(
+        "change",
+        function(event) {
 
-        if (arquivo) {
-          const leitor = new FileReader();
+          const arquivo =
+            event.target.files[0];
 
-          leitor.onload = function(e) {
-            imagePreview.src = e.target.result;
-            imagePreview.style.display = "block";
-          };
 
-          leitor.readAsDataURL(arquivo);
-        } else {
-          imagePreview.style.display = "none";
+          const imagePreview =
+            document.getElementById(
+              "imagePreview"
+            );
+
+
+          if (arquivo) {
+
+            const leitor =
+              new FileReader();
+
+
+            leitor.onload =
+              function(e) {
+
+                imagePreview.src =
+                  e.target.result;
+
+                imagePreview.style.display =
+                  "block";
+
+              };
+
+
+            leitor.readAsDataURL(
+              arquivo
+            );
+
+          } else {
+
+            imagePreview.style.display =
+              "none";
+
+          }
+
         }
-      });
+      );
 
-    // CADASTRAR NOVO OBJETO
+
+    /* =========================
+       CADASTRAR OBJETO
+    ========================= */
+
     document
       .getElementById("objectForm")
-      .addEventListener("submit", function(event) {
-        event.preventDefault();
+      .addEventListener(
+        "submit",
+        function(event) {
 
-        const nome = document
-          .getElementById("objectName")
-          .value
-          .trim();
+          event.preventDefault();
 
-        const descricao = document
-          .getElementById("objectDescription")
-          .value
-          .trim();
 
-        const local = document
-          .getElementById("objectLocation")
-          .value;
+          if (!usuarioLogado) {
 
-        const status = document
-          .getElementById("objectStatus")
-          .value;
+            alert(
+              "Você precisa estar logado."
+            );
 
-        const contato = document
-          .getElementById("objectContact")
-          .value
-          .trim();
+            return;
 
-        const arquivoImagem = document
-          .getElementById("objectImage")
-          .files[0];
+          }
 
-        function salvarObjeto(imagem) {
-          const novoObjeto = {
-            id: Date.now(),
-            nome: nome,
-            descricao: descricao,
-            local: local,
-            status: status,
-            contato: contato,
-            imagem: imagem
-          };
 
-          objetos.unshift(novoObjeto);
+          const nome =
+            document
+              .getElementById("objectName")
+              .value
+              .trim();
 
-          closeModal();
 
-          filtroAtual = "todos";
+          const descricao =
+            document
+              .getElementById(
+                "objectDescription"
+              )
+              .value
+              .trim();
 
-          document
-            .querySelectorAll(".filter-button")
-            .forEach(function(botao) {
-              botao.classList.remove("active");
-            });
 
-          document
-            .querySelector(".filter-button")
-            .classList.add("active");
+          const local =
+            document
+              .getElementById(
+                "objectLocation"
+              )
+              .value;
 
-          renderObjects();
 
-          alert("Objeto cadastrado com sucesso!");
+          const status =
+            document
+              .getElementById(
+                "objectStatus"
+              )
+              .value;
+
+
+          const contato =
+            document
+              .getElementById(
+                "objectContact"
+              )
+              .value
+              .trim();
+
+
+          const arquivoImagem =
+            document
+              .getElementById(
+                "objectImage"
+              )
+              .files[0];
+
+
+          function salvarObjeto(imagem) {
+
+            const novoObjeto = {
+
+              id: Date.now(),
+
+              nome: nome,
+
+              descricao: descricao,
+
+              local: local,
+
+              status: status,
+
+              contato: contato,
+
+              imagem: imagem,
+
+              // IMPORTANTE:
+              // Guarda quem cadastrou o objeto
+              usuarioEmail:
+                usuarioLogado.email
+
+            };
+
+
+            objetos.unshift(
+              novoObjeto
+            );
+
+
+            closeModal();
+
+
+            filtroAtual =
+              "todos";
+
+
+            document
+              .querySelectorAll(
+                "#homeScreen .filter-button"
+              )
+              .forEach(function(botao) {
+
+                botao.classList.remove(
+                  "active"
+                );
+
+              });
+
+
+            document
+              .querySelector(
+                "#homeScreen .filter-button"
+              )
+              .classList.add(
+                "active"
+              );
+
+
+            renderObjects();
+
+
+            alert(
+              "Objeto cadastrado com sucesso!"
+            );
+
+          }
+
+
+          if (arquivoImagem) {
+
+            const leitor =
+              new FileReader();
+
+
+            leitor.onload =
+              function(e) {
+
+                salvarObjeto(
+                  e.target.result
+                );
+
+              };
+
+
+            leitor.readAsDataURL(
+              arquivoImagem
+            );
+
+          } else {
+
+            salvarObjeto(
+              "https://via.placeholder.com/800x500?text=Objeto+sem+imagem"
+            );
+
+          }
+
         }
+      );
 
-        if (arquivoImagem) {
-          const leitor = new FileReader();
-
-          leitor.onload = function(e) {
-            salvarObjeto(e.target.result);
-          };
-
-          leitor.readAsDataURL(arquivoImagem);
-        } else {
-          salvarObjeto(
-            "https://via.placeholder.com/800x500?text=Objeto+sem+imagem"
-          );
-        }
-      });
   </script>
 
 </body>
